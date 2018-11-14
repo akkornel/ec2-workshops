@@ -1,0 +1,9 @@
+
+# Ignore the venv and config files
+venv
+*.ini
+
+# Ignore editor files
+*~
+*.bak
+.*.swp
