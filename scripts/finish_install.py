@@ -12,6 +12,7 @@
 
 # Import standard library stuff
 import configparser
+import fcntl
 import getpass
 import json
 import pkg_resources
@@ -58,10 +59,29 @@ aws_region = None
 
 # Load the config.  If the file doesn't exist, this will fail silently.
 aws_config = configparser.ConfigParser()
-aws_config_fh = open(environ['AWS_CONFIG_FILE'],
-    mode='a+t',
-    encoding='utf-8',
-)
+try:
+    aws_config_fh = open(environ['AWS_CONFIG_FILE'],
+        mode='a+t',
+        encoding='utf-8',
+    )
+except Exception as e:
+    print(
+        'We were unable to open (or create) the file at path %s.' % environ['AWS_CONFIG_FILE'],
+        'Please check permissions and try again.',
+        'Details: %s' % e,
+        sep="\n"
+    )
+    exit()
+try:
+    fcntl.lockf(aws_config_fh.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+except OSError:
+    print(
+        'We were unable to get an exclusive lock on %s.' % environ['AWS_CONFIG_FILE'],
+        'Another script may be using this file.',
+        'Please try again later!',
+        sep="\n"
+    )
+    exit()
 aws_config_fh.seek(0, 0)
 aws_config.read_file(
     f=aws_config_fh,
@@ -271,10 +291,29 @@ aws_secret = None
 
 # Load the config.  If the file doesn't exist, this will fail silently.
 aws_creds = configparser.ConfigParser()
-aws_creds_fh = open(environ['AWS_SHARED_CREDENTIALS_FILE'],
-    mode='a+t',
-    encoding='utf-8',
-)
+try:
+    aws_creds_fh = open(environ['AWS_SHARED_CREDENTIALS_FILE'],
+        mode='a+t',
+        encoding='utf-8',
+    )
+except Exception as e:
+    print(
+        'We were unable to open (or create) the file at path %s.' % environ['AWS_SHARED_CREDENTIALS_FILE'],
+        'Please check permissions and try again.',
+        'Details: %s' % e,
+        sep="\n"
+    )
+    exit()
+try:
+    fcntl.lockf(aws_creds_fh.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+except OSError:
+    print(
+        'We were unable to get an exclusive lock on %s.' % environ['AWS_SHARED_CREDENTIALS_FILE'],
+        'Another script may be using this file.',
+        'Please try again later!',
+        sep="\n"
+    )
+    exit()
 aws_creds_fh.seek(0, 0)
 aws_creds.read_file(
     f=aws_creds_fh,
@@ -428,10 +467,29 @@ print('Checking script configurations…')
 
 # Load the config.  If the file doesn't exist, this will fail silently.
 config = configparser.ConfigParser()
-config_fh = open(environ['CREATE_INSTANCES_CONFIG'],
-    mode='a+t',
-    encoding='utf-8',
-)
+try:
+    config_fh = open(environ['CREATE_INSTANCES_CONFIG'],
+        mode='a+t',
+        encoding='utf-8',
+    )
+except Exception as e:
+    print(
+        'We were unable to open (or create) the file at path %s.' % environ['CREATE_INSTANCES_CONFIG'],
+        'Please check permissions and try again.',
+        'Details: %s' % e,
+        sep="\n"
+    )
+    exit()
+try:
+    fcntl.lockf(config_fh.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+except OSError:
+    print(
+        'We were unable to get an exclusive lock on %s.' % environ['CREATE_INSTANCES_CONFIG'],
+        'Another script may be using this file.',
+        'Please try again later!',
+        sep="\n"
+    )
+    exit()
 config_fh.seek(0, 0)
 config.read_file(
     f=config_fh,
