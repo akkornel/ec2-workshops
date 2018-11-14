@@ -179,3 +179,15 @@ them up.
 # Destroy a Workshop
 
 TBD
+
+# License
+
+The contents of this repository are Copyright © 2018 The Board of Trustees of
+the Leland Stanford Junior University.
+
+All of the code—with the exception of example code—is licensed under the [GNU
+General Public License, Version 3](LICENSE).  Documentation (including
+documentation embedded in code) is licensed under the [Creative Commons
+Attribution-ShareAlike 3.0 Unported](LICENSE.cc-by-sa-3) license.  All examples
+(example code, example configuration, etc.) are licensed under the [Creative
+Common CC0 1.0 Universal](LICENSE.cc0) license.

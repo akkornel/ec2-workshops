@@ -2,6 +2,14 @@
 # -*- coding: utf-8 -*-
 # vim: ts=4 sw=4 et
 
+# Copyright © 2018 The Board of Trustees of the Leland Stanford Junior University.
+
+# The contents of this file are licensed under the
+# GNU General Public License, Version 3.
+# In addition, documentation in this file is licensed under the
+# Creative Commons Attribution-ShareAlike 3.0 Unported.
+# See the files `LICENSE` and `LICENSE.cc-by-sa-3` for full license text.
+
 # First, import modules from the standard library
 import configparser
 import datetime

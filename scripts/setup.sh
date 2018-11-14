@@ -1,5 +1,13 @@
 # setup.sh script.
 
+# Copyright (C) 2018 The Board of Trustees of the Leland Stanford Junior University.
+
+# The contents of this file are licensed under the
+# GNU General Public License, Version 3.
+# In addition, documentation in this file is licensed under the
+# Creative Commons Attribution-ShareAlike 3.0 Unported.
+# See the files `LICENSE` and `LICENSE.cc-by-sa-3` for full license text.
+
 # BASE_PATH is the path to the root of the Git checkout.
 # (The default snippet placed here is from https://stackoverflow.com/q/59895)
 BASE_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )/.."
