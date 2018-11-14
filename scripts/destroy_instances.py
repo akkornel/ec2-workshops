@@ -14,6 +14,7 @@
 import configparser
 import datetime
 import dateutil.tz
+import fcntl
 import ipaddress
 import os
 from os import environ
@@ -37,8 +38,9 @@ print('Welcome to Instance L̶a̶u̶n̶c̶h̶e̶r̶ Destroyer')
 # Worker timeout is in seconds
 worker_timeout = 600
 
-# Look for our config file
+# Look for and lock our config files
 spinner = Spinner('Checking Configuration ')
+handles = dict()
 for var in (
     'AWS_CONFIG_FILE',
     'AWS_SHARED_CREDENTIALS_FILE',
@@ -53,6 +55,15 @@ for var in (
     if not os.path.isfile(environ[var]):
         print('The %s file appears to be missing.  Re-run `finish_install`.' % (
             var,
+        ))
+        exit()
+    try:
+        handles[var] = open(environ[var], 'r')
+        fcntl.flock(handles[var].fileno(), fcntl.LOCK_SH | fcntl.LOCK_NB)
+    except Exception as e:
+        print('There was a problem opening and locking the file at %s: %s' % (
+            environ[var],
+            e,
         ))
         exit()
 
