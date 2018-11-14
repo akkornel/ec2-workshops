@@ -1,0 +1,4 @@
+#!/bin/bash
+
+. scripts/setup.sh
+exec $VENV_PATH/bin/python scripts/destroy_instances.py $@

@@ -1,0 +1,13 @@
+# This is a requirements file.
+# It specifies the packages we need.
+
+# The awscli package is for the `aws` command.
+awscli
+
+# boto3 and progress are for all our custom scripts.
+boto3
+progress
+
+# dateutil and termcolor is used in destroy_instances
+python-dateutil >= 2.7.0
+termcolor >= 1.0.0

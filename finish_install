@@ -1,0 +1,20 @@
+#!/bin/bash
+
+. scripts/setup.sh
+
+# This is unusual, in that we're not handing off to Python immediately!
+echo 'Welcome!'
+echo 'It is time to finish up installation.'
+
+# We'll use shell to make sure the Python modules are installed.
+echo ''
+echo 'Making sure pip is up-to-date...'
+$VENV_PATH/bin/pip install --upgrade pip
+
+echo ''
+echo 'Installing/upgrading required packages...'
+$VENV_PATH/bin/pip install -r requirements.txt --no-warn-script-location
+
+# Now hand off to Python.
+echo ''
+exec $VENV_PATH/bin/python scripts/finish_install.py $@
