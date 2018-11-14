@@ -63,6 +63,8 @@ for var in (
             environ[var],
             e,
         ))
+        print('There may be a permission problem.')
+        print('Or, someone else may be running `finish_install`.')
         exit()
         
 # Try loading our config
